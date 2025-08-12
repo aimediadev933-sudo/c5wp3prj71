@@ -1,1 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ErdemNet Next + AfgREN Next - Advanced Networking Technologies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary: #017CA5;
+            --secondary: #5DBEDB;
+            --body: #F1F5F8;
+            --text: #1D1D1B;
+            --secondary-dark: #1F3F56;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--body);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(1, 124, 165, 0.3);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="networking" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="2" fill="white" opacity="0.1"/><line x1="5" y1="15" x2="25" y2="15" stroke="white" stroke-width="0.5" opacity="0.08"/><line x1="15" y1="5" x2="15" y2="25" stroke="white" stroke-width="0.5" opacity="0.08"/><circle cx="15" cy="15" r="10" fill="none" stroke="white" stroke-width="0.3" opacity="0.06"/></pattern></defs><rect width="100" height="100" fill="url(%23networking)"/></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: var(--white);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Partners Section */
+        .partners {
+            background: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .partners h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-item {
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-item img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Overview Section */
+        .overview {
+            background: var(--body);
+            padding: 4rem 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .content-text h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(1, 124, 165, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Countries Section */
+        .countries {
+            background: var(--white);
+            padding: 4rem 0;
+        }
+
+        .countries-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .countries-text h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .country-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .country-card {
+            background: var(--body);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(1, 124, 165, 0.1);
+            transition: transform 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .country-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .country-card.lead {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+        }
+
+        .country-card .flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .country-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .country-card.lead h3 {
+            color: var(--white);
+        }
+
+        .country-card p {
+            opacity: 0.8;
+        }
+
+        .countries-highlight {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(1, 124, 165, 0.3);
+        }
+
+        .countries-highlight h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .countries-highlight .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Technologies Section */
+        .technologies {
+            background: var(--body);
+            padding: 4rem 0;
+        }
+
+        .technologies h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 20px rgba(1, 124, 165, 0.1);
+        }
+
+        .tech-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .tech-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Activities Section */
+        .activities {
+            background: var(--white);
+            padding: 4rem 0;
+        }
+
+        .activities h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .activity-card {
+            background: var(--body);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .activity-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .activity-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .phase-number {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 30px;
+            height: 30px;
+            background: var(--secondary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .activity-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Outcomes Section */
+        .outcomes {
+            background: var(--body);
+            padding: 4rem 0;
+        }
+
+        .outcomes h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .outcome-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(1, 124, 165, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .outcome-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .outcome-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .outcome-card p {
+            color: var(--text);
+        }
+
+        /* Partners Grid */
+        .partners-grid {
+            background: var(--white);
+            padding: 4rem 0;
+        }
+
+        .partners-grid h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .partners-institutions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .partner-card {
+            background: var(--body);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .partner-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .partner-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .partner-card p {
+            color: var(--text);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Future Directions */
+        .future {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .future-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .future h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .future-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .future-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .future-item h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-dark);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            opacity: 0.9;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .sdg-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .sdg-tag {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .sdg-tag:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-bottom p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .content-grid,
+            .countries-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .country-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logos {
+                gap: 2rem;
+            }
+
+            .logo-item {
+                height: 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .activities-timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: row !important;
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-icon {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .activities-grid,
+            .tech-grid,
+            .outcomes-grid,
+            .partners-institutions,
+            .future-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .overview,
+            .countries,
+            .technologies,
+            .activities,
+            .outcomes,
+            .partners-grid,
+            .future {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Scroll Animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Networking themed animations */
+        @keyframes networkPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(1, 124, 165, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(1, 124, 165, 0); }
+        }
+
+        .tech-icon:hover {
+            animation: networkPulse 2s ease-in-out;
+        }
+
+        /* IPv6 transition animation */
+        @keyframes ipv6Flow {
+            0% { opacity: 0.5; transform: translateX(-20px) scale(0.8); }
+            50% { opacity: 1; transform: translateX(10px) scale(1.1); }
+            100% { opacity: 0.5; transform: translateX(-20px) scale(0.8); }
+        }
+
+        .timeline-content:hover {
+            animation: ipv6Flow 3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">ErdemNet + AfgREN</a>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#countries">Countries</a></li>
+                <li><a href="#technologies">Technologies</a></li>
+                <li><a href="#outcomes">Outcomes</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1>ErdemNet Next + AfgREN Next</h1>
+            <div class="subtitle">Advanced Networking Technologies</div>
+            <p>Strengthening the technological backbone of National Research and Education Networks in Mongolia and Afghanistan through IPv6 and RPKI implementation for scalable, secure, and future-proof architectures</p>
+            <a href="#overview" class="cta-button">Explore Project</a>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <div class="container">
+            <h2 class="scroll-reveal">Supported By</h2>
+            <div class="logos scroll-reveal">
+                <div class="logo-item">
+                    <img src="images/logos/tein-logo.png" alt="TEIN Cooperation Center" />
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/asia-connect-logo.png" alt="Asi@Connect" />
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/eu-logo.png" alt="European Union" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="overview">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text scroll-reveal">
+                    <h2>Project Overview</h2>
+                    <p>This transformative project strengthens the technological backbone of National Research and Education Networks (NRENs) in Mongolia and Afghanistan by implementing advanced networking technologies including IPv6 and RPKI.</p>
+                    <p>With comprehensive support from the Asi@Connect initiative, ErdemNet and AfgREN are transitioning from legacy internet infrastructure toward scalable, secure, and future-proof architectures that serve as reference points for the Asia-Pacific region.</p>
+                </div>
+                <div class="stats-grid scroll-reveal">
+                    <div class="stat-card">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Countries Involved</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">IPv6</span>
+                        <span class="stat-label">Next Generation</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">RPKI</span>
+                        <span class="stat-label">Secure Routing</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Implementation Phases</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countries Section -->
+    <section id="countries" class="countries">
+        <div class="container">
+            <div class="countries-content">
+                <div class="countries-text scroll-reveal">
+                    <h2>Target Countries</h2>
+                    <p>This bilateral project focuses on strengthening NREN capabilities in Mongolia and Afghanistan through advanced networking technology deployment and capacity building.</p>
+                    
+                    <div class="country-cards">
+                        <div class="country-card lead">
+                            <div class="flag">🇲🇳</div>
+                            <h3>Mongolia</h3>
+                            <p>ErdemNet - Lead NREN with active IPv6 and RPKI deployment</p>
+                        </div>
+                        <div class="country-card">
+                            <div class="flag">🇦🇫</div>
+                            <h3>Afghanistan</h3>
+                            <p>AfgREN - Co-applicant NREN for parallel technology implementation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="countries-highlight scroll-reveal">
+                    <div class="icon">🌐</div>
+                    <h3>NREN Collaboration</h3>
+                    <p><strong>Lead Institution:</strong> ErdemNet (Mongolia)</p>
+                    <p><strong>Co-Applicant:</strong> AfgREN (Afghanistan)</p>
+                    <p><strong>Focus:</strong> IPv6 + RPKI Deployment</p>
+                    <p><strong>Community:</strong> mnNOG & SANOG</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies" class="technologies">
+        <div class="container">
+            <h2 class="scroll-reveal">Advanced Technologies</h2>
+            <div class="tech-grid">
+                <div class="tech-card scroll-reveal">
+                    <div class="tech-icon">🌐</div>
+                    <h3>IPv6 Deployment</h3>
+                    <p>Complete transition to IPv6+ networking with 464XLAT for backward compatibility with IPv4 internet</p>
+                </div>
+                <div class="tech-card scroll-reveal">
+                    <div class="tech-icon">🔒</div>
+                    <h3>RPKI Implementation</h3>
+                    <p>Resource Public Key Infrastructure with ROA (Route Origin Authorization) and ROV (Route Origin Validation)</p>
+                </div>
+                <div class="tech-card scroll-reveal">
+                    <div class="tech-icon">🛡️</div>
+                    <h3>BGP Security</h3>
+                    <p>Enhanced routing security through resilient RPKI deployment with multiple validation tools and servers</p>
+                </div>
+                <div class="tech-card scroll-reveal">
+                    <div class="tech-icon">📡</div>
+                    <h3>Router Upgrades</h3>
+                    <p>Infrastructure modernization to support Router-to-Router updates and advanced networking protocols</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="activities">
+        <div class="container">
+            <h2 class="scroll-reveal">Implementation Phases</h2>
+            <div class="activities-timeline scroll-reveal">
+                <div class="timeline-content">
+                        <h3>📊 Baselining</h3>
+                        <p>Developing comprehensive baseline of current network infrastructure using APNIC and RIPE Atlas data sources. Procurement planning for replacement hardware and network upgrades.</p>
+                    </div>
+                    <div class="timeline-icon">1</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>🛡️ Resilient RPKI Deployment</h3>
+                        <p>Implementing best practices for resilient RPKI by piloting two distinct validation tools on separate servers. Infrastructure upgrades to support Router-to-Router updates.</p>
+                    </div>
+                    <div class="timeline-icon">2</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>🌐 IPv6+ Deployment</h3>
+                        <p>Initiating transition to IPv6+ for both ErdemNet and AfgREN networks, targeting IPv6+ only networking with 464XLAT for backward compatibility.</p>
+                    </div>
+                    <div class="timeline-icon">3</div>
+                </div>
+                <div class="timeline-item">
+              
+                    <div class="timeline-content">
+                        <h3>🤝 Community Advocacy</h3>
+                        <p>Supporting ErdemNet and AfgREN as focal points for Network Operator Groups (mnNOG & SANOG) on ROV and IPv6+ networking. Participation in APAN Network Engineering Workshops.</p>
+                    </div>
+                    <div class="timeline-icon">4</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+                  
+
+    <!-- Partners Grid -->
+    <section class="partners-grid">
+        <div class="container">
+            <h2 class="scroll-reveal">Partner Organizations</h2>
+            <div class="partners-institutions">
+                <div class="partner-card scroll-reveal">
+                    <h3>🇲🇳 ErdemNet</h3>
+                    <p>Lead NREN for Mongolia providing project coordination and primary implementation site</p>
+                </div>
+                <div class="partner-card scroll-reveal">
+                    <h3>🇦🇫 AfgREN</h3>
+                    <p>Co-applicant NREN for Afghanistan supporting parallel technology deployment</p>
+                </div>
+                <div class="partner-card scroll-reveal">
+                    <h3>👨‍💼 Brook Schofield</h3>
+                    <p>Technical consultant providing specialized expertise in IPv6 and RPKI implementation</p>
+                </div>
+                <div class="partner-card scroll-reveal">
+                    <h3>🇲🇳 mnNOG</h3>
+                    <p>Mongolia Network Operators Group - affiliated entity for community engagement</p>
+                </div>
+                <div class="partner-card scroll-reveal">
+                    <h3>🌐 NSRC</h3>
+                    <p>Network Startup Resource Center providing technical resources and training support</p>
+                </div>
+                <div class="partner-card scroll-reveal">
+                    <h3>🏫 Cisco Networking Academy</h3>
+                    <p>Educational partner delivering instructor-level training and certification programs</p>
+                </div>
+                <div class="partner-card scroll-reveal">
+                    <h3>🌏 APNIC</h3>
+                    <p>Asia-Pacific Network Information Centre providing address allocation and technical coordination</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes Section -->
+    <section id="outcomes" class="outcomes">
+        <div class="container">
+            <h2 class="scroll-reveal">Key Outcomes</h2>
+            <div class="outcomes-grid">
+                <div class="outcome-card scroll-reveal">
+                    <h3>🌐 IPv6 Plan Implementation</h3>
+                    <p>IPv6 address plan finalized, revised twice, and currently being deployed in educational networks, starting with schools in Ulaanbaatar, Mongolia.</p>
+                </div>
+                <div class="outcome-card scroll-reveal">
+                    <h3>🛡️ RPKI Validator Deployed</h3>
+                    <p>RPKI validator successfully installed and tested in virtual environment at ErdemNet's data center, ready for full implementation post-hardware upgrade.</p>
+                </div>
+                <div class="outcome-card scroll-reveal">
+                    <h3>🎓 Cisco Training Completed</h3>
+                    <p>Instructor-level training in Networking Essentials and CCNA conducted for stakeholders from all provinces and major districts via WebEx platform.</p>
+                </div>
+                <div class="outcome-card scroll-reveal">
+                    <h3>🤝 Community Engagement</h3>
+                    <p>IPv6 and RPKI awareness promoted through mnNOG#4, APNIC, and APAN events, involving stakeholders, universities, and government ministries.</p>
+                </div>
+                <div class="outcome-card scroll-reveal">
+                    <h3>🏫 NUM APNIC Membership</h3>
+                    <p>Following project advocacy, National University of Mongolia joined APNIC and upgraded from iBGP to eBGP for enhanced connectivity.</p>
+                </div>
+                <div class="outcome-card scroll-reveal">
+                    <h3>📚 Capacity Building Success</h3>
+                    <p>Local IPv6+ capacity significantly improved through comprehensive training programs reaching stakeholders across multiple provinces and districts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Directions -->
+    <section class="future">
+        <div class="container">
+            <div class="future-content scroll-reveal">
+                <h2>Future Directions</h2>
+                <p>Expanding advanced networking technology adoption across the Asia-Pacific region through sustained deployment, enhanced training, and strategic partnerships.</p>
+                
+                <div class="future-grid">
+                    <div class="future-item">
+                        <h3>🚀 Complete RPKI Deployment</h3>
+                        <p>Deploy ROV on core routers post-procurement to fully validate routing paths across the academic network infrastructure.</p>
+                    </div>
+                    <div class="future-item">
+                        <h3>🏫 Rural IPv6 Expansion</h3>
+                        <p>Extend IPv6 deployment to rural schools using MPLS and OSPFv3 in coordination with national telecom providers.</p>
+                    </div>
+                    <div class="future-item">
+                        <h3>🛡️ Enhanced Security Training</h3>
+                        <p>Incorporate advanced ROA/ROV modules into Cisco courses for deeper understanding and broader adoption of routing security.</p>
+                    </div>
+                    <div class="future-item">
+                        <h3>🌟 Reference Site Development</h3>
+                        <p>Use ErdemNet's implementation as a reference case for other NRENs transitioning to IPv6 and RPKI technologies.</p>
+                    </div>
+                    <div class="future-item">
+                        <h3>🇦🇫 AfgREN Collaboration</h3>
+                        <p>Seek renewed engagement with AfgREN once conditions stabilize to implement parallel IPv6 and RPKI activities.</p>
+                    </div>
+                    <div class="future-item">
+                        <h3>🌏 Regional Leadership</h3>
+                        <p>Establish Mongolia as a regional leader in advanced networking technologies and best practices sharing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Project Information</h3>
+                    <p>ErdemNet Next + AfgREN Next is funded under the 5th Call of the Asi@Connect program, supported by the European Union and implemented through TEIN Cooperation Center.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Technology Impact</h3>
+                    <p>Strengthening NREN infrastructure in Mongolia and Afghanistan through IPv6 and RPKI deployment, creating scalable, secure, and future-proof networking architectures.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Sustainable Development Goals</h3>
+                    <div class="sdg-tags">
+                        <span class="sdg-tag">SDG 4: Quality Education</span>
+                        <span class="sdg-tag">SDG 9: Innovation & Infrastructure</span>
+                        <span class="sdg-tag">SDG 17: Partnerships</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ErdemNet Next + AfgREN Next Project. Led by ErdemNet, funded by the European Union through Asi@Connect.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-reveal elements
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navLinks.style.display = 'flex';
+            } else {
+                navLinks.style.display = 'none';
+            }
+        });
+
+        // Add staggered animation to cards
+        const addStaggeredAnimation = () => {
+            const cardContainers = [
+                '.tech-grid .tech-card',
+                '.outcomes-grid .outcome-card',
+                '.partners-institutions .partner-card',
+                '.activities-grid .activity-card'
+            ];
+
+            cardContainers.forEach(selector => {
+                const cards = document.querySelectorAll(selector);
+                cards.forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.1}s`;
+                });
+            });
+        };
+
+        // Initialize staggered animations when page loads
+        document.addEventListener('DOMContentLoaded', addStaggeredAnimation);
+
+        // Add networking-themed hover effects
+        document.querySelectorAll('.tech-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', () => {
+                icon.style.transform = 'scale(1.3) rotate(15deg)';
+                icon.style.boxShadow = '0 8px 25px rgba(1, 124, 165, 0.4)';
+            });
+            
+            icon.addEventListener('mouseleave', () => {
+                icon.style.transform = 'scale(1) rotate(0deg)';
+                icon.style.boxShadow = 'none';
+            });
+        });
+
+        // Add IPv6 transition simulation
+        const simulateIPv6Transition = () => {
+            const activityCards = document.querySelectorAll('.activity-card');
+            let currentPhase = 0;
+            
+            setInterval(() => {
+                activityCards.forEach(card => {
+                    card.style.borderColor = 'transparent';
+                    card.style.transform = 'translateY(0px)';
+                });
+                
+                if (activityCards[currentPhase]) {
+                    activityCards[currentPhase].style.borderColor = '#017CA5';
+                    activityCards[currentPhase].style.backgroundColor = 'rgba(1, 124, 165, 0.1)';
+                    activityCards[currentPhase].style.transform = 'translateY(-5px)';
+                    
+                    setTimeout(() => {
+                        activityCards[currentPhase].style.backgroundColor = '';
+                        activityCards[currentPhase].style.transform = 'translateY(0px)';
+                    }, 2000);
+                }
+                
+                currentPhase = (currentPhase + 1) % activityCards.length;
+            }, 4000);
+        };
+
+        // Add NREN connectivity animation
+        const simulateNRENConnectivity = () => {
+            const countriesHighlight = document.querySelector('.countries-highlight');
+            
+            if (countriesHighlight) {
+                setInterval(() => {
+                    countriesHighlight.style.boxShadow = '0 10px 30px rgba(93, 190, 219, 0.6)';
+                    countriesHighlight.style.transform = 'scale(1.02)';
+                    
+                    setTimeout(() => {
+                        countriesHighlight.style.boxShadow = '0 10px 30px rgba(1, 124, 165, 0.3)';
+                        countriesHighlight.style.transform = 'scale(1)';
+                    }, 1500);
+                }, 5000);
+            }
+        };
+
+        // Initialize simulations
+        document.addEventListener('DOMContentLoaded', () => {
+            simulateIPv6Transition();
+            simulateNRENConnectivity();
+        });
+
+        // Add network topology pattern animation
+        const createNetworkTopology = () => {
+            const hero = document.querySelector('.hero');
+            for (let i = 0; i < 12; i++) {
+                const node = document.createElement('div');
+                node.innerHTML = Math.random() > 0.5 ? '🌐' : '🔗';
+                node.style.cssText = `
+                    position: absolute;
+                    font-size: 1.4rem;
+                    opacity: 0.15;
+                    animation: networkTopology ${4 + Math.random() * 3}s ease-in-out infinite;
+                    top: ${20 + Math.random() * 60}%;
+                    left: ${Math.random() * 100}%;
+                    z-index: 1;
+                `;
+                hero.appendChild(node);
+            }
+        };
+
+        // Add CSS animation for network topology
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes networkTopology {
+                0%, 100% { transform: translateY(0px) scale(0.8) opacity(0.1); }
+                25% { transform: translateY(-15px) scale(1.2) opacity(0.2); }
+                50% { transform: translateY(-30px) scale(1.4) opacity(0.25); }
+                75% { transform: translateY(-10px) scale(1.0) opacity(0.15); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize network topology
+        document.addEventListener('DOMContentLoaded', createNetworkTopology);
+
+        // Simulate RPKI validation status
+        const simulateRPKIValidation = () => {
+            const stats = document.querySelectorAll('.stat-number');
+            const techStats = [stats[1], stats[2]]; // IPv6 and RPKI stats
+            
+            if (techStats[0] && techStats[1]) {
+                setInterval(() => {
+                    techStats.forEach(stat => {
+                        stat.style.color = Math.random() > 0.5 ? '#017CA5' : '#5DBEDB';
+                        stat.style.textShadow = '0 0 10px rgba(1, 124, 165, 0.6)';
+                    });
+                    
+                    setTimeout(() => {
+                        techStats.forEach(stat => {
+                            stat.style.textShadow = 'none';
+                        });
+                    }, 1000);
+                }, 3500);
+            }
+        };
+
+        // Start RPKI simulation after page load
+        setTimeout(simulateRPKIValidation, 4000);
+
+        // Add country card interaction
+        document.querySelectorAll('.country-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                if (!card.classList.contains('lead')) {
+                    card.style.borderColor = '#017CA5';
+                    card.style.backgroundColor = 'rgba(1, 124, 165, 0.05)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                if (!card.classList.contains('lead')) {
+                    card.style.borderColor = 'transparent';
+                    card.style.backgroundColor = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
